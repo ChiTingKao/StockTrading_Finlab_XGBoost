@@ -249,8 +249,8 @@ def perf_stats(returns_series):
     return ann_return, ann_vol, sharpe
 
 ann_mkt, vol_mkt, sharpe_mkt = perf_stats(daily_market)
-ann_strat, vol_strat, sharpe_strat = perf_stats(daily_returns)
-ann_strat_no_fee, vol_strat_no_fee, sharpe_strat_no_fee = perf_stats(daily_returns)
+ann_strat, vol_strat, sharpe_strat = perf_stats(daily_strat)
+ann_strat_no_fee, vol_strat_no_fee, sharpe_strat_no_fee = perf_stats(daily_strat_no_fee)
 
 print("Market Ann Return / Vol / Sharpe:", ann_mkt, vol_mkt, sharpe_mkt)
 print("Strategy Ann Return / Vol / Sharpe:", ann_strat, vol_strat, sharpe_strat)

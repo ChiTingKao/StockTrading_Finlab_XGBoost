@@ -1,11 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# # 從 finlab 取得資料
-
-# In[1]:
-
-
 import joblib
 import numpy as np
 import pandas as pd
@@ -17,9 +9,7 @@ from sklearn.model_selection import TimeSeriesSplit, GridSearchCV
 from sklearn.metrics import accuracy_score, roc_auc_score, classification_report
 
 
-# In[2]:
-
-
+# 從 finlab 取得資料
 Closes = data.get('etl:adj_close')
 Opens = data.get('etl:adj_open')
 Highs = data.get('etl:adj_high')
@@ -30,9 +20,6 @@ Investment_Trust = data.get('institutional_investors_trading_summary:投信買�
 Dealer = data.get('institutional_investors_trading_summary:自營商買賣超股數(自行買賣)')
 Margin_Trading = data.get('margin_transactions:融資今日餘額')
 Short_Selling = data.get('margin_transactions:融券今日餘額')
-
-
-# In[3]:
 
 
 # 資料前處理一，將資料由寬表格改為窄表格
@@ -48,9 +35,6 @@ Margin_Trading = Margin_Trading.reset_index().melt(id_vars='date', var_name='sto
 Short_Selling = Short_Selling.reset_index().melt(id_vars='date', var_name='stock_id', value_name='Short_Selling')
 
 
-# In[4]:
-
-
 # 資料前處理二，將所有表格合併
 df = Closes.merge(Opens, on=['date','stock_id'], how='left')
 df = df.merge(Highs, on=['date','stock_id'], how='left')
@@ -61,9 +45,6 @@ df = df.merge(Investment_Trust, on=['date','stock_id'], how='left')
 df = df.merge(Dealer, on=['date','stock_id'], how='left')
 df = df.merge(Margin_Trading, on=['date','stock_id'], how='left')
 df = df.merge(Short_Selling, on=['date','stock_id'], how='left')
-
-
-# In[5]:
 
 
 # 技術指標
@@ -85,11 +66,7 @@ def macd(series: pd.Series, span_short=12, span_long=26, span_signal=9):
     return macd_line, signal, hist
 
 
-# In[6]:
-
-
 # 資料前處理三，加入技術指標
-
 # 當日報酬率
 df['ret'] = df['Close'].pct_change()
 
@@ -128,23 +105,13 @@ df['short_10'] = df.groupby('stock_id')['Short_Selling'].transform(lambda x: x.r
 df['target'] = (df['Close'].shift(-1) > df['Close']).astype(int)
 
 df.dropna(inplace=True)
+print(df)
 
 
-# In[7]:
-
-
-df
-
-
-# # XGBoost 預測股價
-
-# In[8]:
-
-
+# XGBoost 預測股價
 """
 技術指標 + 籌碼指標 + XGBoost
 """
-
 # features list
 features = [
     'lag_ret_1','lag_ret_2','lag_ret_3','lag_ret_5',
@@ -229,11 +196,7 @@ print("AUC:", auc)
 print(classification_report(y_test, (y_test_pred > 0.5).astype(int)))
 
 
-# # 模型回測
-
-# In[9]:
-
-
+# 模型回測
 backtest = X_test.copy()
 backtest['stock_id'] = df.loc[X_test.index, 'stock_id']
 backtest['date'] = df.loc[X_test.index, 'date']

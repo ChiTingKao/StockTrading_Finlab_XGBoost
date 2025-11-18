@@ -1,0 +1,7 @@
+joblib
+numpy
+pandas
+xgboost
+matplotlib
+finlab
+sklearn

@@ -16,7 +16,5 @@
 ##### 使用 XGBoost（二元分類）預測隔日漲跌
 ##### 評估指標：AUC
 ### 
-#### 完整程式碼請參考 main.py（或你的檔案名稱）。
-### 
 ### 回測數據
 <img width="858" height="451" alt="image" src="https://github.com/user-attachments/assets/db37a0c7-a23e-4776-9e5c-11a4be6160b5" />

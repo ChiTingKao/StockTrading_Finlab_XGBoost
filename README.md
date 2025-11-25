@@ -17,3 +17,7 @@ Train / Validation / Test = 70% / 15% / 15%
 #### -回測與績效圖示
 <img width="858" height="451" alt="image" src="https://github.com/user-attachments/assets/6da72f3d-bdf1-46f0-84dd-803a29c9ee79" />
 
+Market Ann Return / Vol / Sharpe: -0.243459910855927 0.17599802297442343 -1.3833104790500792
+Strategy Ann Return / Vol / Sharpe: -0.09865465820132546 0.05126674295158096 -1.9243402369087488
+Strategy No Trading Fee Ann Return / Vol / Sharpe: 0.04229707937438132 0.05121553989755971 0.8258641543781229
+

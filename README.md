@@ -15,4 +15,5 @@ Train / Validation / Test = 70% / 15% / 15%
 評估指標：AUC
 
 #### -回測與績效圖示
-<img width="858" height="451" alt="image" src="https://github.com/user-attachments/assets/db37a0c7-a23e-4776-9e5c-11a4be6160b5" />
+<img width="858" height="451" alt="image" src="https://github.com/user-attachments/assets/6da72f3d-bdf1-46f0-84dd-803a29c9ee79" />
+

@@ -205,7 +205,8 @@ backtest['date'] = df.loc[X_test.index, 'date']
 backtest['pred_signal'] = y_test_pred_label
 
 # 計算隔日報酬
-backtest['next_ret'] = df.loc[backtest.index, 'lag_ret_1']
+df['next_ret'] = df['ret'].shift(-1)
+backtest['next_ret'] = df.loc[backtest.index, 'next_ret']
 
 # ------------------------
 # 加入手續費 / 滑點
